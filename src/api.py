@@ -12,6 +12,7 @@ from langchain_core.output_parsers import StrOutputParser
 from langchain_core.runnables import RunnablePassthrough
 
 load_dotenv()
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 app = FastAPI(title="RAG Interbank Chatbot API")
 
@@ -33,7 +34,7 @@ embeddings = CohereEmbeddings(
 )
 
 vectorstore = FAISS.load_local(
-    "faiss_index",
+    os.path.join(BASE_DIR, "faiss_index"),
     embeddings,
     allow_dangerous_deserialization=True
 )
