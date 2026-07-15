@@ -21,7 +21,7 @@ for root, dirs, files in os.walk("/app"):
         print(f"  {os.path.join(root, file)}")
 print("=== FIN DEBUG ===")
 
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+
 
 app = FastAPI(title="RAG Interbank Chatbot API")
 
@@ -35,6 +35,8 @@ app.add_middleware(
 # ─────────────────────────────────────────────
 # CARGAR ÍNDICE FAISS
 # ─────────────────────────────────────────────
+
+
 print("🔄 Cargando índice FAISS...")
 
 embeddings = CohereEmbeddings(
@@ -42,8 +44,21 @@ embeddings = CohereEmbeddings(
     model="embed-multilingual-v3.0"
 )
 
+# En Cloud Run el working directory es /app
+# Localmente es C:\Users\HP\rag-interbank-chatbot
+FAISS_PATH = os.environ.get("FAISS_PATH", "/app/faiss_index")
+
+# Fallback para desarrollo local
+if not os.path.exists(FAISS_PATH):
+    FAISS_PATH = os.path.join(
+        os.path.dirname(os.path.dirname(os.path.abspath(__file__))),
+        "faiss_index"
+    )
+
+print(f"🔍 Buscando índice FAISS en: {FAISS_PATH}")
+
 vectorstore = FAISS.load_local(
-    os.path.join(BASE_DIR, "faiss_index"),
+    FAISS_PATH,
     embeddings,
     allow_dangerous_deserialization=True
 )
