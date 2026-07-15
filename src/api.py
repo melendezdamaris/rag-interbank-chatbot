@@ -12,6 +12,15 @@ from langchain_core.output_parsers import StrOutputParser
 from langchain_core.runnables import RunnablePassthrough
 
 load_dotenv()
+print("=== DEBUG: Contenido del filesystem ===")
+print(f"CWD: {os.getcwd()}")
+print(f"BASE_DIR: {os.path.dirname(os.path.dirname(os.path.abspath(__file__)))}")
+print("Archivos en /app:")
+for root, dirs, files in os.walk("/app"):
+    for file in files:
+        print(f"  {os.path.join(root, file)}")
+print("=== FIN DEBUG ===")
+
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 app = FastAPI(title="RAG Interbank Chatbot API")
