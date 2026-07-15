@@ -4,9 +4,9 @@
 > rates, and services — grounded exclusively in official banking documents.
 > Built with production-grade tools and deployed on Google Cloud Run.
 
-**🌐 Live Demo →** [Try the Chatbot](https://melendezdamaris.github.io/rag-interbank-chatbot/)  
+**🌐 Live Demo →** [Try the Chatbot](https://melendezdam.github.io/rag-interbank-chatbot/)  
 **📡 API Docs →** [Swagger UI](https://rag-interbank-chatbot-1022063418857.us-central1.run.app/docs)  
-**💻 Source Code →** [GitHub](https://github.com/melendezdamaris/rag-interbank-chatbot)
+**💻 Source Code →** [GitHub](https://github.com/melendezdam/rag-interbank-chatbot)
 
 ---
 
@@ -139,7 +139,7 @@ in a regulated financial context.
 
 ```bash
 # Clone the repository
-git clone https://github.com/melendezdamaris/rag-interbank-chatbot.git
+git clone https://github.com/melendezdam/rag-interbank-chatbot.git
 cd rag-interbank-chatbot
 
 # Create virtual environment
